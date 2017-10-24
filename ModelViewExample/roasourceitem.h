@@ -31,8 +31,13 @@ public:
 
     virtual int col() const;
 
+    virtual bool isValidIndex(const QModelIndex& index);
+
 signals:
     void itemSelected( const int& row, const int& col );
+
+protected slots:
+    virtual void selectionChanged(const QModelIndex index);
 
 protected:
     QString m_sourceValue;
@@ -45,34 +50,5 @@ protected:
 
     int m_col;
 };
-
-/*----------------------------------------------------------------------------------------------------------*/
-
-class ROASourceTextItem : public ROASourceItem
-{
-public:
-    ROASourceTextItem( const QString& value, const int& row, const int& col);
-
-    ~ROASourceTextItem();
-};
-
-/*----------------------------------------------------------------------------------------------------------*/
-
-class ROASourceCheckableItem : public ROASourceItem
-{
-    Q_OBJECT
-
-public:
-    ROASourceCheckableItem( const QString& value, const int& row, const int& col);
-
-    ~ROASourceCheckableItem();
-
-    QWidget* getItemWidget();
-
-private slots:
-    void radioClicked();
-};
-
-
 
 #endif // ROASOURCEITEM_H

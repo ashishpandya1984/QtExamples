@@ -3,13 +3,13 @@
 
 #include <QAbstractTableModel>
 #include <QTableView>
-#include "roadatamodel.h"
+#include "roasourcecollectionadaptor.h"
 
 class RQDataSourceTableModel : public QAbstractTableModel
 {
     Q_OBJECT
 public:
-    explicit RQDataSourceTableModel(ROADataModel* dataModel, QObject *parent = 0);
+    explicit RQDataSourceTableModel(ROASourceCollectionAdaptor* sourceCollection, QObject *parent = 0);
 
 protected:
     virtual int rowCount(const QModelIndex &parent) const;
@@ -28,7 +28,7 @@ public slots:
     void addSource(const QString& sourceName, const QString& sourceValue);
 
 protected:
-    ROADataModel* m_dataModel;
+    ROASourceCollectionAdaptor* m_roaSourceCollection;
 
     int m_numberOfRows;
 

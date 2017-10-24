@@ -16,15 +16,17 @@ SOURCES += main.cpp\
         mainwindow.cpp \
     rqdatasourceselectionview.cpp \
     rqdatasourcetablemodel.cpp \
-    roadatamodel.cpp \
-    rqradiobuttonitemdelegate.cpp \
-    roasourceitem.cpp
+    roasourceitem.cpp \
+    roasourcetextitem.cpp \
+    roasourcecheckableitem.cpp \
+    roasourcecollectionadaptor.cpp
 
 HEADERS  += mainwindow.h \
     rqdatasourceselectionview.h \
     rqdatasourcetablemodel.h \
-    roadatamodel.h \
-    rqradiobuttonitemdelegate.h \
-    roasourceitem.h
+    roasourceitem.h \
+    roasourcetextitem.h \
+    roasourcecheckableitem.h \
+    roasourcecollectionadaptor.h
 
 FORMS    += mainwindow.ui

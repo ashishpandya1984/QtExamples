@@ -8,7 +8,7 @@ ROASourceItem::ROASourceItem(const QString &sourceValue, const ROASourceItem::RO
 
 ROASourceItem::~ROASourceItem()
 {
-    if(m_itemWidget)
+    if( m_itemWidget )
         delete m_itemWidget, m_itemWidget;
 }
 
@@ -37,41 +37,12 @@ int ROASourceItem::col() const
     return m_col;
 }
 
-/*----------------------------------------------------------------------------------------------------------*/
-
-ROASourceTextItem::ROASourceTextItem(const QString &value, const int &row, const int &col)
-    : ROASourceItem (value, ROASourceItem::ITEM_TEXT, row, col)
+bool ROASourceItem::isValidIndex(const QModelIndex &index)
 {
+    return ( index.row() == m_row && index.isValid() );
 }
 
-ROASourceTextItem::~ROASourceTextItem()
+void ROASourceItem::selectionChanged(const QModelIndex index)
 {
-}
-
-/*----------------------------------------------------------------------------------------------------------*/
-
-
-ROASourceCheckableItem::ROASourceCheckableItem(const QString &value, const int &row, const int &col)
-    : ROASourceItem (value, ROASourceItem::ITEM_WIDGET, row, col)
-{    
-}
-
-ROASourceCheckableItem::~ROASourceCheckableItem()
-{
-}
-
-QWidget* ROASourceCheckableItem::getItemWidget()
-{
-    if( m_itemWidget )
-        delete m_itemWidget, m_itemWidget = 0;
-
-    m_itemWidget = new QRadioButton( m_sourceValue );
-    QObject::connect( (QRadioButton*)m_itemWidget, SIGNAL(clicked()), this, SLOT(radioClicked()) );
-
-    return m_itemWidget;
-}
-
-void ROASourceCheckableItem::radioClicked()
-{
-    emit itemSelected( m_row, m_col );
+    (void)index;
 }

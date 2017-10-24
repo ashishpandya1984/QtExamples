@@ -2,14 +2,14 @@
 #include <QHeaderView>
 
 #include "rqdatasourcetablemodel.h"
-#include "roadatamodel.h"
+#include "roasourcecollectionadaptor.h"
 #include "rqradiobuttonitemdelegate.h"
 
 RQDataSourceSelectionView::RQDataSourceSelectionView(QWidget *parent) :
     QTableView(parent)
 {
-    m_roaDataModel = new ROADataModel();
-    RQDataSourceTableModel *tableModel = new RQDataSourceTableModel( m_roaDataModel, this );
+    m_roaSourceCollection = new ROASourceCollectionAdaptor();
+    RQDataSourceTableModel *tableModel = new RQDataSourceTableModel( m_roaSourceCollection, this );
 
     setModel(tableModel);
     setSelectionBehavior(QAbstractItemView::SelectRows);
@@ -20,5 +20,5 @@ RQDataSourceSelectionView::RQDataSourceSelectionView(QWidget *parent) :
 
 void RQDataSourceSelectionView::addDataSource(const QString &sourceName, const QString &sourceValue)
 {
-    ((RQDataSourceTableModel*)model())->addSource(sourceName, sourceValue);    
+    ((RQDataSourceTableModel*)model())->addSource(sourceName, sourceValue);
 }

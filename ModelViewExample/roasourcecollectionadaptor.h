@@ -5,10 +5,10 @@
 #include <QList>
 #include "roasourceitem.h"
 
-class ROADataModel
+class ROASourceCollectionAdaptor
 {
 public:
-    ROADataModel();
+    ROASourceCollectionAdaptor();
 
     void addSource(const QString& sourceName, const QString& sourceValue );
 

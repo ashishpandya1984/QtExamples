@@ -2,7 +2,7 @@
 #define RQDATASOURCESELECTIONVIEW_H
 
 #include <QTableView>
-class ROADataModel;
+class ROASourceCollectionAdaptor;
 
 class RQDataSourceSelectionView : public QTableView
 {    
@@ -12,7 +12,7 @@ public:
     void addDataSource(const QString& sourceName, const QString& sourceValue);
 
 protected:
-    ROADataModel* m_roaDataModel;
+    ROASourceCollectionAdaptor* m_roaSourceCollection;
     
 };
 

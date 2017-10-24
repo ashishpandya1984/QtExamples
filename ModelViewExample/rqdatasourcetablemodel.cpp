@@ -1,12 +1,12 @@
 #include "rqdatasourcetablemodel.h"
 #include <QRadioButton>
 
-RQDataSourceTableModel::RQDataSourceTableModel(ROADataModel* dataModel, QObject *parent) :
+RQDataSourceTableModel::RQDataSourceTableModel(ROASourceCollectionAdaptor *sourceCollection, QObject *parent) :
     QAbstractTableModel(parent)
 {
     m_view = dynamic_cast<QTableView*> (parent);
 
-    m_dataModel = dataModel;
+    m_roaSourceCollection = sourceCollection;
     m_numberOfColumns = 2;
 
     m_columnInfo << QString("Data source");
@@ -17,8 +17,8 @@ int RQDataSourceTableModel::rowCount(const QModelIndex &parent) const
 {
     Q_UNUSED(parent);
 
-    if( m_dataModel )
-        return m_dataModel->getSourceCount();
+    if( m_roaSourceCollection )
+        return m_roaSourceCollection->getSourceCount();
     return 0;
 }
 
@@ -37,7 +37,7 @@ QVariant RQDataSourceTableModel::data(const QModelIndex &index, int role) const
     {
     case Qt::DisplayRole:
         {
-            ROASourceItem* sourceItem = m_dataModel->getItemAtLocation( index.row(), index.column() );
+            ROASourceItem* sourceItem = m_roaSourceCollection->getItemAtLocation( index.row(), index.column() );
 
             if( sourceItem && sourceItem->getItemType() == ROASourceItem::ITEM_TEXT )
                 return sourceItem->getValue();
@@ -66,27 +66,29 @@ void RQDataSourceTableModel::refresh()
     beginResetModel();
     endResetModel();
 
-    for (int i = 0; i < m_dataModel->getSourceCount(); i++)
+    for (int i = 0; i < m_roaSourceCollection->getSourceCount(); i++)
     {
-        ROASourceItem *cellItem = m_dataModel->getItemAtLocation(i, 0);
+        ROASourceItem *cellItem = m_roaSourceCollection->getItemAtLocation(i, 0);
 
-        m_view->setIndexWidget( index(i, 0), cellItem->getItemWidget() );
-        QObject::connect(cellItem, SIGNAL(itemSelected(int,int)), m_view, SLOT(selectRow(int)));
+        QObject::connect( cellItem, SIGNAL( itemSelected( int, int )), m_view, SLOT( selectRow( int ) ) );
+        QObject::connect( m_view, SIGNAL( pressed( QModelIndex ) ), cellItem, SLOT( selectionChanged( const QModelIndex ) ) );
+
+        m_view->setIndexWidget( index(i, 0), cellItem->getItemWidget() );        
     }
 }
 
 void RQDataSourceTableModel::addSource( const QString &sourceName, const QString &sourceValue )
 {
-    if( m_dataModel )
+    if( m_roaSourceCollection )
     {
-        m_dataModel->addSource(sourceName, sourceValue);
+        m_roaSourceCollection->addSource( sourceName, sourceValue );
         refresh();
     }
 }
 
 Qt::ItemFlags RQDataSourceTableModel::flags( const QModelIndex &index ) const
 {
-    if (!index.isValid())
+    if ( !index.isValid() )
         return 0;
 
     return ( QAbstractItemModel::flags( index ) );

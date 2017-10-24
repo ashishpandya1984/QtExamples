@@ -3,7 +3,6 @@
 
 #include "rqdatasourcetablemodel.h"
 #include "roasourcecollectionadaptor.h"
-#include "rqradiobuttonitemdelegate.h"
 
 RQDataSourceSelectionView::RQDataSourceSelectionView(QWidget *parent) :
     QTableView(parent)

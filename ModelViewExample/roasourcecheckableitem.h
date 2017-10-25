@@ -8,9 +8,9 @@ class ROASourceCheckableItem : public ROASourceItem
     Q_OBJECT
 
 public:
-    ROASourceCheckableItem( const QString& value, const int& row, const int& col);
+    ROASourceCheckableItem( const QString& value, const int& row, const int& col );
 
-    ~ROASourceCheckableItem();
+    virtual ~ROASourceCheckableItem();
 
     QWidget* getItemWidget();
 

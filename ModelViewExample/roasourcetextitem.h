@@ -8,7 +8,7 @@ class ROASourceTextItem : public ROASourceItem
 public:
     ROASourceTextItem( const QString& value, const int& row, const int& col);
 
-    ~ROASourceTextItem();
+    virtual ~ROASourceTextItem();
 };
 
 #endif // ROASOURCETEXTITEM_H

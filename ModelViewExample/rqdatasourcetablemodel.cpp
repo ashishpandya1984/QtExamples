@@ -7,10 +7,11 @@ RQDataSourceTableModel::RQDataSourceTableModel(ROASourceCollectionAdaptor *sourc
     m_view = dynamic_cast<QTableView*> (parent);
 
     m_roaSourceCollection = sourceCollection;
-    m_numberOfColumns = 2;
+    m_numberOfColumns = 3;
 
     m_columnInfo << QString("Data source");
     m_columnInfo << QString("Current value");
+    m_columnInfo << QString("Source Type");
 }
 
 int RQDataSourceTableModel::rowCount(const QModelIndex &parent) const
@@ -68,12 +69,14 @@ void RQDataSourceTableModel::refresh()
 
     for (int i = 0; i < m_roaSourceCollection->getSourceCount(); i++)
     {
-        ROASourceItem *cellItem = m_roaSourceCollection->getItemAtLocation(i, 0);
+        ROASourceItem *cellRadioItem = m_roaSourceCollection->getItemAtLocation(i, 0);
+        ROASourceItem *cellDropDownItem = m_roaSourceCollection->getItemAtLocation(i, 2);
 
-        QObject::connect( cellItem, SIGNAL( itemSelected( int, int )), m_view, SLOT( selectRow( int ) ) );
-        QObject::connect( m_view, SIGNAL( pressed( QModelIndex ) ), cellItem, SLOT( selectionChanged( const QModelIndex ) ) );
+        QObject::connect( cellRadioItem, SIGNAL( itemSelected( int, int )), m_view, SLOT( selectRow( int ) ) );
+        QObject::connect( m_view, SIGNAL( pressed( QModelIndex ) ), cellRadioItem, SLOT( selectionChanged( const QModelIndex ) ) );
 
-        m_view->setIndexWidget( index(i, 0), cellItem->getItemWidget() );        
+        m_view->setIndexWidget( index(i, 0), cellRadioItem->getItemWidget() );
+        m_view->setIndexWidget( index(i, 2), cellDropDownItem->getItemWidget() );
     }
 }
 

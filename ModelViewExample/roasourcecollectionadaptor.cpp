@@ -1,6 +1,7 @@
 #include "roasourcecollectionadaptor.h"
 #include "roasourcecheckableitem.h"
 #include "roasourcetextitem.h"
+#include "roasourcedropdownitem.h"
 
 ROASourceCollectionAdaptor::ROASourceCollectionAdaptor()
 {
@@ -12,6 +13,7 @@ void ROASourceCollectionAdaptor::addSource(const QString &sourceName, const QStr
 
     sourceItem << new ROASourceCheckableItem( sourceName , m_dataCollection.count(), 0);
     sourceItem << new ROASourceTextItem( sourceValue , m_dataCollection.count(), 1);
+    sourceItem << new ROASourceDropDownItem( "Automatic", m_dataCollection.count(), 2);
 
     m_dataCollection << sourceItem;
 }

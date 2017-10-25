@@ -19,7 +19,8 @@ SOURCES += main.cpp\
     roasourceitem.cpp \
     roasourcetextitem.cpp \
     roasourcecheckableitem.cpp \
-    roasourcecollectionadaptor.cpp
+    roasourcecollectionadaptor.cpp \
+    roasourcedropdownitem.cpp
 
 HEADERS  += mainwindow.h \
     rqdatasourceselectionview.h \
@@ -27,6 +28,7 @@ HEADERS  += mainwindow.h \
     roasourceitem.h \
     roasourcetextitem.h \
     roasourcecheckableitem.h \
-    roasourcecollectionadaptor.h
+    roasourcecollectionadaptor.h \
+    roasourcedropdownitem.h
 
 FORMS    += mainwindow.ui

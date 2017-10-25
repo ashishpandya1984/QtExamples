@@ -3,8 +3,8 @@
 #include <QVBoxLayout>
 #include <QComboBox>
 
-ROASourceDropDownItem::ROASourceDropDownItem(const QString &value, const int &row, const int &col)
-    : ROASourceItem( value, ROASourceItem::ITEM_WIDGET, row, col)
+ROASourceDropDownItem::ROASourceDropDownItem(const QString &value, const int &row, const int &col, const QStringList options)
+    : ROASourceItem( value, ROASourceItem::ITEM_WIDGET, row, col), m_dropDownOptions( options )
 {
 }
 
@@ -21,8 +21,9 @@ QWidget *ROASourceDropDownItem::getItemWidget()
     QVBoxLayout *layout = new QVBoxLayout( containerFrame );
 
     QComboBox *comboBoxItem = new QComboBox( containerFrame );
-    comboBoxItem->addItems( QStringList() << "Automatic" << "Manual");
+    comboBoxItem->addItems( m_dropDownOptions );
     comboBoxItem->setCurrentText( m_sourceValue );
+    comboBoxItem->setFocusPolicy(Qt::NoFocus);
 
     layout->addWidget( comboBoxItem );
     layout->setContentsMargins(3,3,3,3);

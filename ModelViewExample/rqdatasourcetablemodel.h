@@ -25,7 +25,7 @@ protected:
     virtual void refresh();
     
 public slots:
-    void addSource(const QString& sourceName, const QString& sourceValue);
+    void addSource(const QString& sourceName, const QString& sourceValue, const QString &sourceType);
 
 protected:
     ROASourceCollectionAdaptor* m_roaSourceCollection;

@@ -14,10 +14,13 @@ RQDataSourceSelectionView::RQDataSourceSelectionView(QWidget *parent) :
     setSelectionBehavior(QAbstractItemView::SelectRows);
     setSelectionMode(QAbstractItemView::SingleSelection);
     horizontalHeader()->setStretchLastSection(true);
-    setShowGrid(false);    
+
+    setShowGrid(false);
+    setFocusPolicy(Qt::NoFocus);
+    setAlternatingRowColors(true);
 }
 
-void RQDataSourceSelectionView::addDataSource(const QString &sourceName, const QString &sourceValue)
+void RQDataSourceSelectionView::addDataSource(const QString &sourceName, const QString &sourceValue, const QString& sourceType)
 {
-    ((RQDataSourceTableModel*)model())->addSource(sourceName, sourceValue);
+    ((RQDataSourceTableModel*)model())->addSource(sourceName, sourceValue, sourceType);
 }

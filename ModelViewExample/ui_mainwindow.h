@@ -13,7 +13,9 @@
 #include <QtWidgets/QAction>
 #include <QtWidgets/QApplication>
 #include <QtWidgets/QButtonGroup>
+#include <QtWidgets/QComboBox>
 #include <QtWidgets/QFrame>
+#include <QtWidgets/QGroupBox>
 #include <QtWidgets/QHBoxLayout>
 #include <QtWidgets/QHeaderView>
 #include <QtWidgets/QLabel>
@@ -32,14 +34,20 @@ class Ui_MainWindow
 {
 public:
     QWidget *centralWidget;
-    QVBoxLayout *verticalLayout;
+    QVBoxLayout *verticalLayout_3;
+    QGroupBox *groupBox_2;
+    QVBoxLayout *verticalLayout_2;
     QFrame *frm_tableView;
+    QGroupBox *groupBox;
+    QVBoxLayout *verticalLayout;
     QFrame *frame_2;
     QHBoxLayout *horizontalLayout;
     QLabel *label;
     QLineEdit *edit_sourceName;
     QLabel *label_2;
     QLineEdit *edit_sourceValue;
+    QLabel *label_3;
+    QComboBox *cb_sourceType;
     QPushButton *btn_Add;
     QMenuBar *menuBar;
     QToolBar *mainToolBar;
@@ -52,31 +60,50 @@ public:
         MainWindow->resize(824, 619);
         centralWidget = new QWidget(MainWindow);
         centralWidget->setObjectName(QStringLiteral("centralWidget"));
-        verticalLayout = new QVBoxLayout(centralWidget);
-        verticalLayout->setSpacing(6);
-        verticalLayout->setContentsMargins(11, 11, 11, 11);
-        verticalLayout->setObjectName(QStringLiteral("verticalLayout"));
-        frm_tableView = new QFrame(centralWidget);
+        verticalLayout_3 = new QVBoxLayout(centralWidget);
+        verticalLayout_3->setSpacing(3);
+        verticalLayout_3->setContentsMargins(11, 11, 11, 11);
+        verticalLayout_3->setObjectName(QStringLiteral("verticalLayout_3"));
+        verticalLayout_3->setContentsMargins(5, 5, 5, 5);
+        groupBox_2 = new QGroupBox(centralWidget);
+        groupBox_2->setObjectName(QStringLiteral("groupBox_2"));
+        verticalLayout_2 = new QVBoxLayout(groupBox_2);
+        verticalLayout_2->setSpacing(3);
+        verticalLayout_2->setContentsMargins(11, 11, 11, 11);
+        verticalLayout_2->setObjectName(QStringLiteral("verticalLayout_2"));
+        verticalLayout_2->setContentsMargins(5, 5, 5, 5);
+        frm_tableView = new QFrame(groupBox_2);
         frm_tableView->setObjectName(QStringLiteral("frm_tableView"));
         frm_tableView->setFrameShape(QFrame::StyledPanel);
         frm_tableView->setFrameShadow(QFrame::Raised);
 
-        verticalLayout->addWidget(frm_tableView);
+        verticalLayout_2->addWidget(frm_tableView);
 
-        frame_2 = new QFrame(centralWidget);
-        frame_2->setObjectName(QStringLiteral("frame_2"));
+
+        verticalLayout_3->addWidget(groupBox_2);
+
+        groupBox = new QGroupBox(centralWidget);
+        groupBox->setObjectName(QStringLiteral("groupBox"));
         QSizePolicy sizePolicy(QSizePolicy::Preferred, QSizePolicy::Fixed);
         sizePolicy.setHorizontalStretch(0);
         sizePolicy.setVerticalStretch(0);
+        sizePolicy.setHeightForWidth(groupBox->sizePolicy().hasHeightForWidth());
+        groupBox->setSizePolicy(sizePolicy);
+        verticalLayout = new QVBoxLayout(groupBox);
+        verticalLayout->setSpacing(3);
+        verticalLayout->setContentsMargins(11, 11, 11, 11);
+        verticalLayout->setObjectName(QStringLiteral("verticalLayout"));
+        verticalLayout->setContentsMargins(5, 5, 5, 5);
+        frame_2 = new QFrame(groupBox);
+        frame_2->setObjectName(QStringLiteral("frame_2"));
         sizePolicy.setHeightForWidth(frame_2->sizePolicy().hasHeightForWidth());
         frame_2->setSizePolicy(sizePolicy);
         frame_2->setFrameShape(QFrame::StyledPanel);
         frame_2->setFrameShadow(QFrame::Raised);
         horizontalLayout = new QHBoxLayout(frame_2);
-        horizontalLayout->setSpacing(3);
+        horizontalLayout->setSpacing(6);
         horizontalLayout->setContentsMargins(11, 11, 11, 11);
         horizontalLayout->setObjectName(QStringLiteral("horizontalLayout"));
-        horizontalLayout->setContentsMargins(-1, 0, -1, 0);
         label = new QLabel(frame_2);
         label->setObjectName(QStringLiteral("label"));
 
@@ -97,6 +124,21 @@ public:
 
         horizontalLayout->addWidget(edit_sourceValue);
 
+        label_3 = new QLabel(frame_2);
+        label_3->setObjectName(QStringLiteral("label_3"));
+
+        horizontalLayout->addWidget(label_3);
+
+        cb_sourceType = new QComboBox(frame_2);
+        cb_sourceType->setObjectName(QStringLiteral("cb_sourceType"));
+        QSizePolicy sizePolicy1(QSizePolicy::Expanding, QSizePolicy::Fixed);
+        sizePolicy1.setHorizontalStretch(0);
+        sizePolicy1.setVerticalStretch(0);
+        sizePolicy1.setHeightForWidth(cb_sourceType->sizePolicy().hasHeightForWidth());
+        cb_sourceType->setSizePolicy(sizePolicy1);
+
+        horizontalLayout->addWidget(cb_sourceType);
+
         btn_Add = new QPushButton(frame_2);
         btn_Add->setObjectName(QStringLiteral("btn_Add"));
 
@@ -104,6 +146,9 @@ public:
 
 
         verticalLayout->addWidget(frame_2);
+
+
+        verticalLayout_3->addWidget(groupBox);
 
         MainWindow->setCentralWidget(centralWidget);
         menuBar = new QMenuBar(MainWindow);
@@ -125,8 +170,16 @@ public:
     void retranslateUi(QMainWindow *MainWindow)
     {
         MainWindow->setWindowTitle(QApplication::translate("MainWindow", "MainWindow", 0));
-        label->setText(QApplication::translate("MainWindow", "Source Name", 0));
+        groupBox_2->setTitle(QString());
+        groupBox->setTitle(QApplication::translate("MainWindow", "Source", 0));
+        label->setText(QApplication::translate("MainWindow", "Name", 0));
         label_2->setText(QApplication::translate("MainWindow", "Value", 0));
+        label_3->setText(QApplication::translate("MainWindow", "Type", 0));
+        cb_sourceType->clear();
+        cb_sourceType->insertItems(0, QStringList()
+         << QApplication::translate("MainWindow", "Automatic", 0)
+         << QApplication::translate("MainWindow", "Manual", 0)
+        );
         btn_Add->setText(QApplication::translate("MainWindow", "Add", 0));
     } // retranslateUi
 

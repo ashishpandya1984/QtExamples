@@ -7,13 +7,13 @@ ROASourceCollectionAdaptor::ROASourceCollectionAdaptor()
 {
 }
 
-void ROASourceCollectionAdaptor::addSource(const QString &sourceName, const QString &sourceValue)
+void ROASourceCollectionAdaptor::addSource(const QString &sourceName, const QString &sourceValue, const QString& sourceType )
 {
     QList<ROASourceItem*> sourceItem;
 
     sourceItem << new ROASourceCheckableItem( sourceName , m_dataCollection.count(), 0);
     sourceItem << new ROASourceTextItem( sourceValue , m_dataCollection.count(), 1);
-    sourceItem << new ROASourceDropDownItem( "Automatic", m_dataCollection.count(), 2);
+    sourceItem << new ROASourceDropDownItem( sourceType, m_dataCollection.count(), 2, ( QStringList() << "Automatic" << "Manual" ) );
 
     m_dataCollection << sourceItem;
 }

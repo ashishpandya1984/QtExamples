@@ -10,7 +10,7 @@ class ROASourceCollectionAdaptor
 public:
     ROASourceCollectionAdaptor();
 
-    void addSource(const QString& sourceName, const QString& sourceValue );
+    void addSource(const QString& sourceName, const QString& sourceValue , const QString &sourceType);
 
     ROASourceItem* getItemAtLocation( const int& row, const int& col );
 

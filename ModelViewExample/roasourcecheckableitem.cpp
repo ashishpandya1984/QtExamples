@@ -15,8 +15,9 @@ QWidget* ROASourceCheckableItem::getItemWidget()
         delete m_itemWidget, m_itemWidget = 0;
 
     m_itemWidget = new QRadioButton( m_sourceValue );
-    QObject::connect( static_cast<QRadioButton*>(m_itemWidget), SIGNAL(clicked()), this, SLOT(radioClicked()) );
+    m_itemWidget->setFocusPolicy(Qt::NoFocus);
 
+    QObject::connect( static_cast<QRadioButton*>(m_itemWidget), SIGNAL(clicked()), this, SLOT(radioClicked()) );
     return m_itemWidget;
 }
 

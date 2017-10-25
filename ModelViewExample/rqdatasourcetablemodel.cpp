@@ -80,11 +80,11 @@ void RQDataSourceTableModel::refresh()
     }
 }
 
-void RQDataSourceTableModel::addSource( const QString &sourceName, const QString &sourceValue )
+void RQDataSourceTableModel::addSource( const QString &sourceName, const QString &sourceValue , const QString& sourceType)
 {
     if( m_roaSourceCollection )
     {
-        m_roaSourceCollection->addSource( sourceName, sourceValue );
+        m_roaSourceCollection->addSource( sourceName, sourceValue ,sourceType);
         refresh();
     }
 }

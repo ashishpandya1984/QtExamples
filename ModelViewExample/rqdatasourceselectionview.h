@@ -9,7 +9,7 @@ class RQDataSourceSelectionView : public QTableView
 public:
     RQDataSourceSelectionView(QWidget *parent = 0);
 
-    void addDataSource(const QString& sourceName, const QString& sourceValue);
+    void addDataSource(const QString& sourceName, const QString& sourceValue, const QString &sourceType);
 
 protected:
     ROASourceCollectionAdaptor* m_roaSourceCollection;

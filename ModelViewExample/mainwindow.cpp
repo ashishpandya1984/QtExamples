@@ -28,5 +28,5 @@ MainWindow::~MainWindow()
 void MainWindow::addDataToTable()
 {
     if(m_tableView)
-        m_tableView->addDataSource( ui->edit_sourceName->text(), ui->edit_sourceValue->text() );
+        m_tableView->addDataSource( ui->edit_sourceName->text(), ui->edit_sourceValue->text() ,ui->cb_sourceType->currentText());
 }

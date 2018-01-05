@@ -8,14 +8,17 @@ class RQGlassWidget : public QWidget
 public:
     RQGlassWidget(QWidget *parent);
 
+    virtual void paintEvent(QPaintEvent *e);
+
+public slots:
     void showGlass();
 
     void hideGlass();
 
-    virtual void paintEvent(QPaintEvent *e);
-
 protected:
     QWidget *m_parent;
+
+    const double m_defaultWindowOpacity;
 };
 
 #endif // RQGLASSWIDGET_H

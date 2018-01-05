@@ -1,22 +1,18 @@
 #include "rqglasswidget.h"
 
 RQGlassWidget::RQGlassWidget(QWidget* parent)
-    : QWidget( parent ), m_parent (parent)
+    : QWidget( parent ), m_parent (parent), m_defaultWindowOpacity(0.4)
 {
     setWindowFlags(Qt::Window | Qt::FramelessWindowHint);
-    setAttribute(Qt::WA_TransparentForMouseEvents);
-
-    //setAttribute(Qt::WA_NoSystemBackground);
-    //setAttribute(Qt::WA_TranslucentBackground);
-    //setAttribute(Qt::WA_PaintOnScreen);
+    setAttribute(Qt::WA_TransparentForMouseEvents);    
 }
 
 void RQGlassWidget::showGlass()
 {
     resize( m_parent->size() );
-    this->setGeometry(m_parent->geometry());
-    this->setSizePolicy(QSizePolicy::Fixed, QSizePolicy::Fixed);
-    this->setWindowOpacity(0.5);
+    setGeometry( m_parent->geometry() );
+    setSizePolicy( QSizePolicy::Fixed, QSizePolicy::Fixed );
+    setWindowOpacity( m_defaultWindowOpacity );
 
     show();
 }
@@ -28,6 +24,10 @@ void RQGlassWidget::hideGlass()
 
 void RQGlassWidget::paintEvent(QPaintEvent* e)
 {
-    QWidget::paintEvent(e);
+    QPalette customPalette = palette();
+    customPalette.setColor( QPalette::Background, Qt::black );
+    setPalette( customPalette );
+
+    QWidget::paintEvent( e );
 }
 

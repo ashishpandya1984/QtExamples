@@ -13,13 +13,10 @@
 #include <QtWidgets/QAction>
 #include <QtWidgets/QApplication>
 #include <QtWidgets/QButtonGroup>
-#include <QtWidgets/QComboBox>
 #include <QtWidgets/QFrame>
 #include <QtWidgets/QGroupBox>
 #include <QtWidgets/QHBoxLayout>
 #include <QtWidgets/QHeaderView>
-#include <QtWidgets/QLabel>
-#include <QtWidgets/QLineEdit>
 #include <QtWidgets/QMainWindow>
 #include <QtWidgets/QMenuBar>
 #include <QtWidgets/QPushButton>
@@ -42,12 +39,6 @@ public:
     QVBoxLayout *verticalLayout;
     QFrame *frame_2;
     QHBoxLayout *horizontalLayout;
-    QLabel *label;
-    QLineEdit *edit_sourceName;
-    QLabel *label_2;
-    QLineEdit *edit_sourceValue;
-    QLabel *label_3;
-    QComboBox *cb_sourceType;
     QPushButton *btn_Add;
     QMenuBar *menuBar;
     QToolBar *mainToolBar;
@@ -104,41 +95,6 @@ public:
         horizontalLayout->setSpacing(6);
         horizontalLayout->setContentsMargins(11, 11, 11, 11);
         horizontalLayout->setObjectName(QStringLiteral("horizontalLayout"));
-        label = new QLabel(frame_2);
-        label->setObjectName(QStringLiteral("label"));
-
-        horizontalLayout->addWidget(label);
-
-        edit_sourceName = new QLineEdit(frame_2);
-        edit_sourceName->setObjectName(QStringLiteral("edit_sourceName"));
-
-        horizontalLayout->addWidget(edit_sourceName);
-
-        label_2 = new QLabel(frame_2);
-        label_2->setObjectName(QStringLiteral("label_2"));
-
-        horizontalLayout->addWidget(label_2);
-
-        edit_sourceValue = new QLineEdit(frame_2);
-        edit_sourceValue->setObjectName(QStringLiteral("edit_sourceValue"));
-
-        horizontalLayout->addWidget(edit_sourceValue);
-
-        label_3 = new QLabel(frame_2);
-        label_3->setObjectName(QStringLiteral("label_3"));
-
-        horizontalLayout->addWidget(label_3);
-
-        cb_sourceType = new QComboBox(frame_2);
-        cb_sourceType->setObjectName(QStringLiteral("cb_sourceType"));
-        QSizePolicy sizePolicy1(QSizePolicy::Expanding, QSizePolicy::Fixed);
-        sizePolicy1.setHorizontalStretch(0);
-        sizePolicy1.setVerticalStretch(0);
-        sizePolicy1.setHeightForWidth(cb_sourceType->sizePolicy().hasHeightForWidth());
-        cb_sourceType->setSizePolicy(sizePolicy1);
-
-        horizontalLayout->addWidget(cb_sourceType);
-
         btn_Add = new QPushButton(frame_2);
         btn_Add->setObjectName(QStringLiteral("btn_Add"));
 
@@ -172,14 +128,6 @@ public:
         MainWindow->setWindowTitle(QApplication::translate("MainWindow", "MainWindow", 0));
         groupBox_2->setTitle(QString());
         groupBox->setTitle(QApplication::translate("MainWindow", "Source", 0));
-        label->setText(QApplication::translate("MainWindow", "Name", 0));
-        label_2->setText(QApplication::translate("MainWindow", "Value", 0));
-        label_3->setText(QApplication::translate("MainWindow", "Type", 0));
-        cb_sourceType->clear();
-        cb_sourceType->insertItems(0, QStringList()
-         << QApplication::translate("MainWindow", "Automatic", 0)
-         << QApplication::translate("MainWindow", "Manual", 0)
-        );
         btn_Add->setText(QApplication::translate("MainWindow", "Add", 0));
     } // retranslateUi
 

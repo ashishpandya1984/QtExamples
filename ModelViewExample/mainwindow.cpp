@@ -4,6 +4,8 @@
 #include <QVBoxLayout>
 #include <QDialog>
 #include "rqdatasourceselectionview.h"
+#include "sourceaddition.h"
+#include "rqglasswidget.h"
 
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent), m_tableView( 0 ),
@@ -27,6 +29,22 @@ MainWindow::~MainWindow()
 
 void MainWindow::addDataToTable()
 {
-    if(m_tableView)
-        m_tableView->addDataSource( ui->edit_sourceName->text(), ui->edit_sourceValue->text() ,ui->cb_sourceType->currentText());
+    RQGlassWidget *glassBackground = new RQGlassWidget(this);
+
+    glassBackground->showGlass();
+    {
+        SourceAddition *srcAdditionDialog = new SourceAddition(this);
+
+        if ( srcAdditionDialog->exec() == QDialog::Accepted )
+        {
+            if(m_tableView)
+                m_tableView->addDataSource( srcAdditionDialog->sourceName(),
+                                            srcAdditionDialog->sourceValue() ,
+                                            srcAdditionDialog->sourceType());
+        }
+        delete srcAdditionDialog;
+    }
+    glassBackground->hideGlass();
+
+    delete glassBackground;
 }

@@ -4,6 +4,8 @@
 #include <QMainWindow>
 
 class RQDataSourceSelectionView;
+class SourceAddition;
+class RQGlassWidget;
 
 namespace Ui {
 class MainWindow;
@@ -19,12 +21,16 @@ public:
     ~MainWindow();
 
 public slots:
-    void addDataToTable();
+    void openSourceAdditionDialog();
 
 private:
     Ui::MainWindow *ui;
 
-    RQDataSourceSelectionView *m_tableView;    
+    RQDataSourceSelectionView *m_tableView;
+
+    SourceAddition *m_srcAdditionDialog;
+
+    RQGlassWidget *m_glassBackground;
 };
 
 #endif // MAINWINDOW_H

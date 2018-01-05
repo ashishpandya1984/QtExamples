@@ -15,6 +15,8 @@ void RQGlassWidget::showGlass()
     setWindowOpacity( m_defaultWindowOpacity );
 
     show();
+
+    emit backgroundReady();
 }
 
 void RQGlassWidget::hideGlass()

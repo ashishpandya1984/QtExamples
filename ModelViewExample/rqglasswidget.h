@@ -17,6 +17,9 @@ public slots:
 
     void hideGlass();
 
+signals:
+    void backgroundReady();
+
 protected:
     QWidget *m_parent;
 

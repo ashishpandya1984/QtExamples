@@ -5,6 +5,8 @@
 
 class RQGlassWidget : public QWidget
 {
+    Q_OBJECT
+
 public:
     RQGlassWidget(QWidget *parent);
 

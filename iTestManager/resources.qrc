@@ -1,0 +1,8 @@
+<RCC>
+    <qresource prefix="/images">
+        <file alias="edit_image">images/alt-editar-icono-5470-128.png</file>
+        <file alias="delete_image">images/erase-512.png</file>
+        <file alias="test_image">images/Test-512.png</file>
+        <file>images/iTestManager.png</file>
+    </qresource>
+</RCC>
